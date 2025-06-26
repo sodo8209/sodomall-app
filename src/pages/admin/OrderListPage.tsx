@@ -6,6 +6,10 @@ import { db } from '../../firebase';
 import { Loader } from 'lucide-react';
 import './OrderListPage.css';
 
+/**
+앙 기모찌
+ */
+
 type OrderStatus = '예약' | '선입금' | '완료' | '취소';
 interface Order {
   id: string;
@@ -19,7 +23,7 @@ interface Order {
 
 /**
  * 공통 로딩 스피너 컴포넌트.
- * 다른 관리자 페이지에서도 재사용될 수 있습니다.
+ * 다른 관리자 페이지에서도 재사용될 수 있습니다. 앙 기모찌
  */
 const LoadingSpinner = () => (
     <div className="loading-overlay">
@@ -166,7 +170,7 @@ const OrderListPage = () => {
                           <option value="예약">예약</option>
                           <option value="선입금">선입금</option>
                           <option value="완료">완료</option>
-                          <option value="취소">취소</option>
+                          <option value="취소">취소</option> 
                         </select>
                       </td>
                     </tr>
