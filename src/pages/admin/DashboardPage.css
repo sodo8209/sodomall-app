@@ -1,0 +1,79 @@
+/* src/pages/admin/DashboardPage.css */
+.dashboard-container {
+  padding: var(--spacing-md);
+}
+.dashboard-header {
+  margin-bottom: var(--spacing-xl);
+}
+/* ... (이하 이전 답변과 동일한 전체 CSS 코드) ... */
+.dashboard-header h1 {
+  font-size: 1.875rem; font-weight: 700; color: var(--text-color-dark); margin: 0;
+}
+.dashboard-header p {
+  color: var(--text-color-medium); margin-top: 0.25rem;
+}
+.stats-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-lg); margin-bottom: var(--spacing-xl);
+}
+.stat-card {
+  background-color: white; border-radius: var(--border-radius-lg); padding: 1.5rem; display: flex; align-items: center; gap: 1rem; border-left: 5px solid var(--card-color, #ccc); box-shadow: var(--box-shadow-sm); transition: all 0.2s ease-in-out;
+}
+.stat-card:hover {
+    transform: translateY(-5px); box-shadow: var(--box-shadow-md);
+}
+.stat-icon {
+  background-color: var(--card-color); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
+}
+.stat-info {
+  display: flex; flex-direction: column;
+}
+.stat-title {
+  color: var(--text-color-medium); font-size: 0.9rem; margin-bottom: 0.25rem;
+}
+.stat-value {
+  font-size: 1.5rem; font-weight: 700; color: var(--text-color-dark);
+}
+.dashboard-main-grid {
+    display: grid; grid-template-columns: 2fr 1fr; gap: var(--spacing-lg); margin-bottom: var(--spacing-xl);
+}
+@media (max-width: 1024px) {
+    .dashboard-main-grid {
+        grid-template-columns: 1fr;
+    }
+}
+.dashboard-section-title {
+  font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-color-dark);
+}
+.dashboard-chart-container, .dashboard-table-container {
+    background-color: white; border-radius: var(--border-radius-lg); padding: 1.5rem; box-shadow: var(--box-shadow-sm);
+}
+.dashboard-table-container table {
+  width: 100%; border-collapse: collapse;
+}
+.dashboard-table-container th,
+.dashboard-table-container td {
+  padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border-color-light);
+}
+.dashboard-table-container th {
+  font-size: 0.8rem; color: var(--text-color-medium); text-transform: uppercase;
+}
+.dashboard-table-container td {
+  font-size: 0.9rem; color: var(--text-color-dark);
+}
+.status-badge {
+  padding: 0.25rem 0.75rem; border-radius: var(--border-radius-full); font-size: 0.75rem; font-weight: 600;
+}
+.status-paid, .status-선입금 { background-color: #dbeafe; color: #1d4ed8; }
+.status-pending, .status-예약 { background-color: #fef3c7; color: #92400e; }
+.status-delivered, .status-완료 { background-color: #d1fae5; color: #065f46; }
+.status-cancelled, .status-취소 { background-color: #fee2e2; color: #991b1b; }
+
+.dashboard-tasks-container { margin-bottom: var(--spacing-xl); }
+.tasks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg); }
+.task-card { background-color: white; border-radius: var(--border-radius-lg); box-shadow: var(--box-shadow-sm); overflow: hidden; }
+.task-card-header { display: flex; align-items: center; gap: 0.75rem; padding: 1rem 1.5rem; background-color: #f9fafb; border-bottom: 1px solid var(--border-color-light); }
+.task-card-header h4 { margin: 0; font-size: 1rem; font-weight: 600; }
+.task-card-body { padding: 1.5rem; }
+.task-card-footer { display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background-color: #f9fafb; border-top: 1px solid var(--border-color-light); text-decoration: none; color: var(--primary-color); font-weight: 600; font-size: 0.9rem; transition: background-color 0.2s; }
+.task-card-footer:hover { background-color: #f3f4f6; }
+.no-data { text-align: center; padding: 2rem; color: var(--text-color-medium); }

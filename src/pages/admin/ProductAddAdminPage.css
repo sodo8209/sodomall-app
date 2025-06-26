@@ -1,0 +1,975 @@
+/* src/pages/admin/ProductAddAdminPage.css (Compact & Modern, 반응형 개선) */
+
+/* 0. Custom CSS Variables - 디자인 시스템의 핵심 변수들을 정의합니다. */
+:root {
+  /* Spacing */
+  --spacing-xxs: 4px;
+  --spacing-xs: 6px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 20px;
+  --spacing-2xl: 24px;
+  --spacing-3xl: 32px;
+
+  /* Font Sizes */
+  --font-size-xxs: 0.75rem;
+  --font-size-xs: 0.8rem;
+  --font-size-sm: 0.875rem;
+  --font-size-default: 1rem;
+  --font-size-md: 1.1rem;
+  --font-size-lg: 1.3rem;
+  --font-size-xl: 1.6rem;
+  --font-size-2xl: 2rem;
+
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Border Radii */
+  --border-radius-xs: 3px;
+  --border-radius-sm: 4px;
+  --border-radius-md: 6px;
+  --border-radius-lg: 8px;
+  --border-radius-full: 9999px; /* 완전한 원 또는 타원형 */
+
+  /* Shadows */
+  --shadow-xxs: 0 1px 3px rgba(0,0,0,0.05);
+  --shadow-xs: 0 2px 4px rgba(0,0,0,0.06);
+  --shadow-sm: 0 2px 6px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 6px 18px rgba(0,0,0,0.1);
+
+  /* Transitions */
+  --transition-speed-fast: 0.2s;
+  --transition-speed-normal: 0.3s;
+  --transition-ease-out: ease-out;
+
+  /* Colors (예시 값, 프로젝트의 실제 색상 팔레트에 맞춰 조정 필요) */
+  --primary-color: #007bff;
+  --primary-color-dark: #0056b3;
+  --primary-color-light: #e6f2ff;
+  --primary-color-rgb: 0, 123, 255; /* RGB 값 추가 */
+
+  /* 배경색 팔레트 */
+  --bg-color-white: #ffffff;
+  --bg-color-gray-soft: #f8f9fa;
+  --bg-color-gray-medium: #e9ecef;
+  --bg-color-gray-dark: #dee2e6;
+  --bg-color-accent-light: #fff3cd; /* 정보 메시지 배경 */
+  --bg-color-error-light: #fdeded; /* 에러 메시지 배경 */
+  --bg-color-success-light: #d4edda; /* 성공 메시지 배경 */
+
+  /* 텍스트 색상 팔레트 */
+  --text-color-primary: #343a40;
+  --text-color-secondary: #6c757d;
+  --text-color-light: #adb5bd;
+  --text-color-strong: #212529;
+  --text-color-error: #dc3545; /* 강렬한 빨간색 */
+  --text-color-success: #155724; /* 강렬한 초록색 */
+  --color-white: #ffffff;
+
+  /* 테두리 색상 팔레트 */
+  --border-color-extra-light: #e0e0e0;
+  --border-color-light: #ced4da;
+  --border-color-medium: #adb5bd;
+  --border-color-dark: #868e96;
+  --border-color-accent: #ffc107; /* 정보 메시지 테두리 */
+  --border-color-success: #28a745; /* 성공 메시지 테두리 */
+
+  /* Storage Type Colors (보관 타입별 색상) */
+  --color-room: #343a40; /* 실온 - 검정 */
+  --color-room-rgb: 52, 58, 64;
+  --color-chilled: #dc3545; /* 냉장 - 빨강 */
+  --color-chilled-rgb: 220, 53, 69;
+  --color-frozen: #007bff; /* 냉동 - 파랑 */
+  --color-frozen-rgb: 0, 123, 255;
+
+  /* Specific Component Variables */
+  --layout-max-width: 1280px;
+  --image-thumbnail-size: 60px;
+  --overlay-bg-color: rgba(255,255,255,0.9);
+}
+
+/* 1. Common Resets & Base Styles */
+/* 모든 요소에 box-sizing 적용 */
+.product-add-main-content *,
+.product-add-main-content *::before,
+.product-add-main-content *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* Pretendard 폰트 우선 적용, 없으면 시스템 폰트 사용 */
+  font-family: 'Pretendard', -apple-system, BlinkMacMacFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+
+/* 모든 일반 텍스트에 적용될 기본 스타일 */
+.product-add-main-content p,
+.product-add-main-content span,
+.product-add-main-content label,
+.product-add-main-content input,
+.product-add-main-content textarea,
+.product-add-main-content select,
+.product-add-main-content button {
+  font-size: var(--font-size-default);
+  color: var(--text-color-primary);
+  line-height: 1.5;
+}
+
+/* 2. Layout Containers */
+.product-add-page-wrapper {
+  padding: var(--spacing-md) 0; /* 상하 패딩 유지, 좌우는 auto margin으로 중앙 정렬 */
+  background: var(--bg-color-gray-soft);
+  min-height: 100vh; /* 최소 높이를 뷰포트 높이로 설정 */
+  display: flex;
+  flex-direction: column;
+}
+
+.product-add-main-content {
+  max-width: var(--layout-max-width);
+  margin: var(--spacing-md) auto; /* 중앙 정렬 */
+  background: var(--bg-color-white);
+  border-radius: var(--border-radius-md);
+  overflow: hidden; /* 내부 요소가 넘치지 않도록 */
+  box-shadow: var(--shadow-sm);
+  flex-grow: 1; /* 남은 공간을 채우도록 성장 */
+  border: 1px solid var(--border-color-extra-light);
+}
+
+/* 3. Top Action Bar - 상단 발행 옵션 및 버튼 */
+.form-top-action-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--bg-color-gray-soft);
+  border-bottom: 1px solid var(--border-color-extra-light);
+  min-height: 50px;
+  flex-wrap: wrap; /* 반응형: 공간 부족 시 줄바꿈 */
+  gap: var(--spacing-sm); /* 요소들 사이 간격 */
+}
+
+.form-top-action-bar h1 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-color-strong);
+  margin: 0; /* 기본 마진 제거 */
+  padding: 0; /* 기본 패딩 제거 */
+  flex-shrink: 0; /* 줄어들지 않도록 */
+}
+
+.publish-options-and-buttons {
+  display: flex;
+  gap: var(--spacing-xs);
+  flex-wrap: wrap; /* 반응형: 공간 부족 시 줄바꿈 */
+  justify-content: flex-end; /* 오른쪽 정렬 */
+}
+
+.publish-option-group {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-color-white);
+    border-radius: var(--border-radius-xs);
+    border: 1px solid var(--border-color-light);
+    overflow: hidden; /* 라디오 버튼 내부 테두리 처리 */
+}
+
+.publish-option-group input[type="radio"] {
+    display: none; /* 실제 라디오 버튼 숨김 */
+}
+
+.publish-option-group .radio-label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xxs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-sm);
+    color: var(--text-color-secondary);
+    cursor: pointer;
+    transition: background-color var(--transition-speed-fast), color var(--transition-speed-fast);
+    border-right: 1px solid var(--border-color-extra-light); /* 버튼 사이 구분선 */
+}
+
+.publish-option-group .radio-label:last-child {
+    border-right: none; /* 마지막 버튼의 오른쪽 구분선 제거 */
+}
+
+.publish-option-group input[type="radio"]:checked + .radio-label {
+    background-color: var(--primary-color);
+    color: var(--color-white);
+    font-weight: var(--font-weight-medium);
+}
+
+.publish-option-group input[type="radio"]:checked + .radio-label .icon {
+    color: var(--color-white); /* 선택 시 아이콘 색상도 변경 */
+}
+
+.publish-option-group .radio-label:hover:not(.checked) {
+    background-color: var(--bg-color-gray-soft);
+}
+
+/* 4. Main Grid Layout - 카드 간격 조정 및 구분 */
+.main-content-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* 모바일에서는 단일 컬럼 */
+  gap: var(--spacing-lg); /* 섹션 카드 간 간격 */
+  padding: var(--spacing-md); /* 그리드 내부 패딩 */
+  background: var(--bg-color-gray-soft);
+}
+
+@media (min-width: 768px) { /* 태블릿 및 데스크탑 */
+    .main-content-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2컬럼 레이아웃 */
+        gap: var(--spacing-xxs); /* 섹션 카드 사이의 아주 작은 간격 */
+        padding: var(--spacing-md);
+    }
+}
+
+/* 5. Section Card - 각 정보 섹션을 감싸는 카드 */
+.section-card {
+  background: var(--bg-color-white);
+  border: 1px solid var(--border-color-light);
+  border-radius: var(--border-radius-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow-xxs);
+  transition: box-shadow var(--transition-speed-normal) var(--transition-ease-out),
+              border-color var(--transition-speed-normal) var(--transition-ease-out);
+}
+
+.section-card:hover {
+  box-shadow: var(--shadow-lg); /* 호버 시 그림자 강조 */
+  border-color: var(--primary-color); /* 호버 시 테두리 색상 변경 */
+}
+
+.section-card-header {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-bottom: 1px solid var(--border-color-extra-light);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  background-color: var(--bg-color-gray-medium); /* 헤더 배경색 */
+  color: var(--text-color-primary);
+}
+
+.section-card-header h3 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-color-strong);
+  margin: 0; /* 기본 마진 제거 */
+  padding: 0; /* 기본 패딩 제거 */
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.section-card-body {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md); /* 폼 그룹 간 간격 */
+  background-color: var(--bg-color-white);
+}
+
+/* 6. Form Group - 개별 입력 필드 그룹 */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxs);
+  padding: var(--spacing-sm);
+  background-color: var(--bg-color-white);
+  border-radius: var(--border-radius-xs);
+  border: 1px solid var(--border-color-extra-light);
+}
+
+.form-group label {
+  font-size: var(--font-size-sm);
+  color: var(--text-color-secondary);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-xxs);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-default);
+  border: 1px solid var(--border-color-light);
+  border-radius: var(--border-radius-xs);
+  transition: border-color var(--transition-speed-fast), box-shadow var(--transition-speed-fast);
+  color: var(--text-color-primary);
+  background-color: var(--bg-color-white);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.25);
+  background-color: var(--bg-color-white);
+}
+
+/* Placeholder 스타일 */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--text-color-light);
+    opacity: 0.9;
+}
+
+/* Select 박스 특정 스타일 */
+.form-group select {
+    appearance: none; /* 기본 드롭다운 화살표 제거 */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* 커스텀 화살표 아이콘 (SVG data URI) */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236c757d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--spacing-sm) center;
+    background-size: 16px;
+    padding-right: var(--spacing-lg); /* 화살표 공간 확보 */
+}
+
+/* 폼 필드 정보 텍스트 */
+.form-field-info {
+    font-size: var(--font-size-xs);
+    color: var(--text-color-light);
+    margin-top: var(--spacing-xxs);
+    line-height: 1.4;
+}
+
+/* Sales Type Options (판매 방식 선택) */
+.sales-type-options {
+    display: flex;
+    flex-wrap: wrap; /* 반응형: 공간 부족 시 줄바꿈 */
+    gap: var(--spacing-sm);
+}
+
+.sales-type-option {
+    flex: 1; /* flex item이 공간을 균등하게 차지 */
+    min-width: 150px; /* 최소 너비 */
+    border: 1px solid var(--border-color-light);
+    border-radius: var(--border-radius-sm);
+    padding: var(--spacing-sm);
+    cursor: pointer;
+    transition: all var(--transition-speed-fast) ease-out;
+    background-color: var(--bg-color-white);
+    box-shadow: var(--shadow-xxs);
+}
+
+.sales-type-option:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-xs);
+}
+
+.sales-type-option.selected {
+    border-color: var(--primary-color);
+    background-color: var(--primary-color-light);
+    box-shadow: var(--shadow-sm);
+}
+
+.sales-type-option h4 {
+    font-size: var(--font-size-default);
+    color: var(--text-color-primary);
+    margin-bottom: var(--spacing-xxs);
+    font-weight: var(--font-weight-semibold);
+}
+
+.sales-type-option p {
+    font-size: var(--font-size-xs);
+    color: var(--text-color-secondary);
+}
+
+/* Storage Type Options (보관 타입 선택) */
+.storage-type-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-xs);
+}
+
+.storage-type-option {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 2px solid var(--border-color-light);
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: var(--bg-color-white);
+    color: var(--text-color-dark);
+    font-weight: var(--font-weight-semibold);
+    position: relative; /* 라디오 버튼 숨기기 위함 */
+}
+
+.storage-type-option input[type="radio"] {
+    position: absolute; /* 실제 라디오 버튼 숨기기 */
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+}
+
+.storage-type-option:hover {
+    border-color: var(--border-color-dark);
+    box-shadow: var(--shadow-xxs);
+}
+
+/* 선택된 보관 타입에 따라 동적으로 색상 적용 */
+.storage-type-option.selected {
+    /* --color-accent 변수는 해당 컴포넌트에서 인라인 스타일로 주입됨 */
+    border-color: var(--color-accent);
+    background-color: var(--color-accent-light, var(--primary-color-light)); /* 연한 배경색 */
+    color: var(--color-accent);
+    box-shadow: 0 0 0 2px rgba(var(--color-accent-rgb), 0.2);
+}
+
+
+/* 픽업일 / 픽업 마감일 가로 정렬을 위한 래퍼 */
+.pickup-dates-group {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap; /* 반응형: 공간 부족 시 줄바꿈 */
+}
+
+.pickup-dates-group .form-group {
+    flex: 1; /* flex item이 공간을 균등하게 차지 */
+    min-width: 200px; /* 더 콤팩트하게 */
+    margin-bottom: 0; /* 그룹 내부 마진 제거 */
+}
+
+
+/* 7. Buttons - 공통 버튼 스타일 */
+.common-button {
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: var(--font-size-sm);
+  border-radius: var(--border-radius-xs);
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xxs);
+  transition: background-color var(--transition-speed-fast) var(--transition-ease-out),
+              box-shadow var(--transition-speed-fast) var(--transition-ease-out),
+              transform var(--transition-speed-fast) var(--transition-ease-out);
+  font-weight: var(--font-weight-medium);
+}
+
+.common-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: var(--bg-color-gray-medium) !important; /* disabled 상태에서 배경색 고정 */
+    color: var(--text-color-light) !important; /* disabled 상태에서 글자색 고정 */
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+.button-preview {
+  background: var(--bg-color-gray-medium);
+  color: var(--text-color-primary);
+}
+
+.button-preview:hover {
+  background: var(--bg-color-gray-dark);
+  box-shadow: var(--shadow-xs);
+  transform: translateY(-1px);
+}
+
+.button-preview:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.button-submit {
+  background: var(--primary-color);
+  color: var(--color-white);
+}
+
+.button-submit:hover {
+  background: var(--primary-color-dark);
+  box-shadow: var(--shadow-xs);
+  transform: translateY(-1px);
+}
+
+.button-submit:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.add-option-btn {
+    background: var(--primary-color-light);
+    color: var(--primary-color);
+    border: 1px dashed var(--primary-color); /* 점선 테두리 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-xxs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-xs);
+    width: fit-content; /* 내용에 맞춰 너비 조절 */
+}
+
+.add-option-btn:hover {
+    background: var(--primary-color);
+    color: var(--color-white);
+    box-shadow: var(--shadow-xxs);
+    border-color: var(--primary-color-dark);
+}
+
+/* Price & Stock Specific Styles (가격 및 재고 관련) */
+.pricing-options-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.pricing-option-row {
+    display: flex;
+    align-items: flex-end; /* 하단 정렬 */
+    gap: var(--spacing-xs);
+}
+
+.pricing-option-row .form-group {
+    flex-grow: 1;
+    margin-bottom: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+}
+
+.pricing-option-row .form-group.unit-group {
+    flex: 2; /* 단위 필드가 가격 필드보다 조금 더 넓게 */
+}
+.pricing-option-row .form-group.price-group {
+    flex: 3;
+}
+
+.price-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xxs);
+    border: 1px solid var(--border-color-light); /* input 자체에 테두리 */
+    border-radius: var(--border-radius-xs);
+    padding: 0; /* 버튼과 input이 wrapper 내에서 패딩 가짐 */
+    background-color: var(--bg-color-white);
+}
+
+.price-input-wrapper input {
+    flex-grow: 1;
+    text-align: right;
+    -moz-appearance: textfield; /* Firefox에서 화살표 숨김 */
+    appearance: textfield; /* 표준 속성 추가 */
+    border: none; /* wrapper가 테두리를 가지므로 input은 테두리 없음 */
+    padding: var(--spacing-xs); /* input 자체 패딩 */
+}
+.price-input-wrapper input::-webkit-outer-spin-button,
+.price-input-wrapper input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.price-input-wrapper button {
+    background-color: var(--bg-color-gray-medium);
+    border: none; /* 버튼 자체 테두리 없음 */
+    border-radius: var(--border-radius-xs);
+    padding: var(--spacing-xxs) var(--spacing-xs);
+    cursor: pointer;
+    transition: background-color var(--transition-speed-fast);
+    color: var(--text-color-secondary);
+    min-width: 28px; /* 버튼 최소 너비 */
+    height: 28px; /* 버튼 높이 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.price-input-wrapper button:hover {
+    background-color: var(--bg-color-gray-dark);
+}
+
+.price-input-wrapper span {
+    font-size: var(--font-size-default);
+    color: var(--text-color-primary);
+    margin-left: var(--spacing-xxs);
+    white-space: nowrap;
+    padding-right: var(--spacing-xs); /* '원' 텍스트 오른쪽 패딩 */
+}
+
+.remove-btn {
+    background-color: var(--bg-color-error-light);
+    color: var(--text-color-error);
+    border: 1px solid var(--text-color-error);
+    border-radius: var(--border-radius-xs);
+    padding: var(--spacing-xxs);
+    cursor: pointer;
+    transition: background-color var(--transition-speed-fast), color var(--transition-speed-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px; /* input 높이와 맞춤 */
+    width: 38px;
+    flex-shrink: 0;
+}
+
+.remove-btn:hover {
+    background-color: var(--text-color-error);
+    color: var(--color-white);
+}
+
+/* Native Date Input Styles (for consistency) */
+.native-date-input {
+    min-height: 38px; /* 일관된 높이 */
+    display: block;
+    width: 100%;
+}
+
+/* 8. Image Preview - 이미지 미리보기 그리드 */
+.image-previews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--image-thumbnail-size), 1fr));
+  gap: var(--spacing-xxs);
+  margin-top: var(--spacing-sm);
+}
+
+.image-preview-wrapper {
+  position: relative;
+  aspect-ratio: 1 / 1; /* 1:1 비율 유지 */
+  border: 1px solid var(--border-color-medium);
+  border-radius: var(--border-radius-xs);
+  overflow: hidden;
+  background-color: var(--bg-color-gray-medium);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--shadow-xxs);
+}
+
+.image-preview-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.remove-image-btn {
+    position: absolute;
+    top: var(--spacing-xxs);
+    right: var(--spacing-xxs);
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--border-color-light);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color var(--transition-speed-fast), transform var(--transition-speed-fast);
+    color: var(--text-color-secondary);
+}
+
+.remove-image-btn:hover {
+    background-color: var(--bg-color-gray-dark);
+    transform: scale(1.1);
+}
+
+/* 9. Utility groups (Flexbox-based) - 라벨 칩 */
+.label-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) 0;
+}
+
+.label-chip {
+    padding: var(--spacing-xxs) var(--spacing-sm);
+    border: 1px solid var(--border-color-medium);
+    border-radius: var(--border-radius-lg); /* 둥근 모양 */
+    background-color: var(--bg-color-white);
+    color: var(--text-color-secondary);
+    font-size: var(--font-size-xs);
+    cursor: pointer;
+    transition: all var(--transition-speed-fast) ease-out;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xxs);
+    white-space: nowrap; /* 줄바꿈 방지 */
+    box-shadow: var(--shadow-xxs);
+}
+
+.label-chip:hover:not(.selected) {
+    background-color: var(--bg-color-gray-medium);
+    border-color: var(--border-color-dark);
+}
+
+.label-chip.selected {
+    background-color: var(--primary-color);
+    color: var(--color-white);
+    border-color: var(--primary-color);
+    font-weight: var(--font-weight-medium);
+}
+
+.label-check-icon {
+    color: var(--color-white);
+    font-size: 14px;
+}
+
+/* Category Chips Container (새로 추가) */
+.category-chips-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) 0;
+}
+
+.category-chip {
+    background-color: var(--bg-color-gray-soft);
+    border: 1px solid var(--border-color-light);
+    color: var(--text-color-secondary);
+    padding: var(--spacing-xxs) var(--spacing-sm);
+    border-radius: var(--border-radius-lg);
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    transition: all var(--transition-speed-fast) ease-out;
+}
+
+.category-chip:hover:not(.selected) {
+    background-color: var(--bg-color-gray-medium);
+    border-color: var(--border-color-medium);
+}
+
+.category-chip.selected {
+    background-color: var(--primary-color);
+    color: var(--color-white);
+    border-color: var(--primary-color);
+    font-weight: var(--font-weight-medium);
+}
+
+.category-chip:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: var(--bg-color-gray-soft);
+    color: var(--text-color-light);
+    border-color: var(--border-color-light);
+}
+
+.form-field-info.no-subcategories {
+    font-style: italic;
+}
+
+
+/* 10. Notifications & Loading - 메시지 배너 및 로딩 스피너 */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--overlay-bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.loading-overlay .spin {
+    animation: spin 1s linear infinite;
+    color: var(--primary-color); /* 스피너 색상 */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-overlay p {
+    color: var(--text-color-secondary);
+    font-size: var(--font-size-default);
+}
+
+.loading-message-inline {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--text-color-medium);
+    font-size: var(--font-size-sm);
+}
+
+.loading-message-inline .spin-inline {
+    animation: spin 1s linear infinite;
+}
+
+.message-banner {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-lg); /* 좀 더 강조된 그림자 */
+    width: fit-content;
+    margin: var(--spacing-md) auto; /* 중앙 정렬, 상단 마진 */
+    max-width: 90%;
+    z-index: 1001; /* 다른 요소 위에 표시 */
+    position: fixed; /* 고정 위치 */
+    bottom: var(--spacing-lg);
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: fadeInOut 5s ease-out forwards;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translate(-50%, 20px); }
+    10% { opacity: 1; transform: translate(-50%, 0); }
+    90% { opacity: 1; transform: translate(-50%, 0); }
+    100% { opacity: 0; transform: translate(-50%, 20px); }
+}
+
+.error-message-banner {
+  background: var(--bg-color-error-light);
+  color: var(--text-color-error);
+  border: 1px solid var(--text-color-error);
+}
+
+.success-message-banner {
+  background: var(--bg-color-success-light);
+  color: var(--text-color-success);
+  border: 1px solid var(--border-color-success);
+}
+
+.info-message-banner {
+  background: var(--bg-color-accent-light);
+  color: var(--text-color-primary);
+  border: 1px solid var(--border-color-accent);
+}
+
+/* Optional: Scrollbar for cleaner look */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color-gray-soft);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color-medium);
+  border-radius: 10px;
+  border: 2px solid var(--bg-color-gray-soft);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-color-dark);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color-medium) var(--bg-color-gray-soft);
+}
+
+/* --- Mobile Responsiveness (767px 이하) --- */
+@media (max-width: 767px) {
+    .form-top-action-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+        padding: var(--spacing-sm);
+    }
+
+    .form-top-action-bar h1 {
+        font-size: var(--font-size-xl);
+        width: 100%;
+        text-align: center;
+    }
+
+    .publish-options-and-buttons {
+        width: 100%;
+        justify-content: center;
+        gap: var(--spacing-sm);
+    }
+
+    .publish-option-group {
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .publish-option-group .radio-label {
+        flex-grow: 1;
+        justify-content: center;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color-extra-light);
+    }
+    .publish-option-group .radio-label:last-child {
+        border-bottom: none;
+    }
+
+    .common-button {
+        flex-grow: 1; /* 모바일에서 버튼들이 가로 공간을 채우도록 */
+    }
+
+    .main-content-grid {
+        padding: var(--spacing-sm);
+    }
+
+    .section-card-header {
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    .section-card-header h3 {
+        font-size: var(--font-size-md);
+    }
+
+    .section-card-body {
+        padding: var(--spacing-sm);
+        gap: var(--spacing-md);
+    }
+
+    .form-group {
+        padding: var(--spacing-xs);
+    }
+
+    .sales-type-options, .storage-type-options, .category-chips-container {
+        flex-direction: column; /* 모바일에서는 세로로 쌓이도록 */
+        gap: var(--spacing-xs);
+    }
+
+    .sales-type-option, .storage-type-option, .category-chip {
+        width: 100%; /* 전체 너비 차지 */
+        min-width: unset;
+    }
+
+    .pickup-dates-group {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .price-input-wrapper {
+        flex-wrap: wrap; /* 가격 입력 필드도 필요시 줄바꿈 */
+        justify-content: flex-end;
+    }
+    .price-input-wrapper input {
+        width: 100%; /* input이 한 줄 차지 */
+        text-align: left;
+        margin-bottom: var(--spacing-xxs);
+    }
+    .price-input-wrapper button {
+        flex-grow: 1; /* 버튼들이 가로 공간을 채우도록 */
+    }
+    .price-input-wrapper span {
+        margin-left: 0;
+        padding-right: 0;
+    }
+}

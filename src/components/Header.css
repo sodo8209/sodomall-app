@@ -1,0 +1,107 @@
+/* src/components/Header.css */
+
+.main-header {
+    background: linear-gradient(to right, var(--primary-color-light), var(--primary-color-lighter)); /* 은은한 그라데이션 배경 */
+    height: 85px; /* 헤더 높이 증가 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 var(--spacing-xxl); /* 패딩 더 넓게 */
+    border-bottom: 1px solid var(--border-color-medium); /* 구분선 강조 */
+    box-shadow: var(--box-shadow-lg); /* 그림자 더 짙게 */
+    position: sticky;
+    top: 0;
+    z-index: 500;
+}
+
+.header-left {
+    display: flex;
+    flex-direction: column; /* 세로 정렬 */
+    align-items: flex-start; /* 왼쪽 정렬 */
+    gap: var(--spacing-xs); /* 간격 조절 */
+    flex-shrink: 0;
+}
+
+.header-center {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-width: 0;
+}
+
+/* .header-title { // 사용하지 않으므로 주석 처리 -> current-date로 변경
+    font-size: var(--font-size-xxxl);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-color-dark);
+    margin: 0;
+} */
+
+.brand-logo-container {
+    display: flex;
+    align-items: center;
+    /* 로고가 중앙에 더 크게 보이도록 추가 조정 */
+    padding-top: var(--spacing-xs);
+    padding-bottom: var(--spacing-xs);
+}
+
+.brand-logo {
+    height: 65px; /* 로고 높이 더욱 증가 */
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2)); /* 로고에 그림자 효과 추가 */
+}
+
+/* .store-name { // 사용하지 않으므로 주석 처리
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-color-medium);
+} */
+
+.header-actions {
+    display: flex;
+    flex-direction: column; /* 세로 정렬 */
+    align-items: flex-end; /* 오른쪽 정렬 */
+    gap: var(--spacing-xs); /* 간격 조절 */
+    flex-shrink: 0;
+    justify-content: flex-end;
+}
+
+.header-back-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 55px; /* 버튼 크기 증가 */
+  height: 55px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.header-back-button:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* 호버 시 배경색 변경 */
+}
+
+.header-back-button svg {
+  color: var(--text-color-white); /* 뒤로가기 아이콘 색상 변경 */
+  width: 30px; /* 아이콘 크기 증가 */
+  height: 30px;
+}
+
+.current-date {
+    font-size: var(--font-size-lg); /* 날짜 글자 크기 증가 */
+    color: var(--text-color-white); /* 날짜 글자색 변경 */
+    font-weight: var(--font-weight-semibold); /* 글자 두께 강화 */
+    white-space: nowrap;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* 텍스트 그림자 */
+}
+
+.greeting-message { /* 추가: 인사말 스타일 */
+    font-size: var(--font-size-xl); /* 인사말 글자 크기 증가 */
+    color: var(--text-color-white); /* 인사말 글자색 변경 */
+    font-weight: var(--font-weight-bold); /* 글자 두께 강조 */
+    white-space: nowrap;
+    text-align: right;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* 텍스트 그림자 */
+}

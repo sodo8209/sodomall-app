@@ -1,0 +1,173 @@
+/* src/pages/admin/OrderListPage.css */
+
+.order-list-container {
+    padding: var(--spacing-lg);
+    background-color: var(--bg-color-gray-soft); /* ProductAddAdminPage.css 변수 재활용 */
+    min-height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.order-list-header {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-color-strong);
+    margin: 0;
+}
+
+.order-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-md);
+    background-color: var(--bg-color-white);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color-extra-light);
+}
+
+.search-input {
+    flex-grow: 1;
+    min-width: 200px;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border: 1px solid var(--border-color-light);
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-default);
+    transition: all var(--transition-speed-fast);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.25);
+}
+
+.status-filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+}
+
+.status-filter-btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border: 1px solid var(--border-color-light);
+    border-radius: var(--border-radius-md);
+    background-color: var(--bg-color-gray-soft);
+    color: var(--text-color-secondary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: all var(--transition-speed-fast);
+}
+
+.status-filter-btn:hover {
+    background-color: var(--bg-color-gray-medium);
+    border-color: var(--border-color-medium);
+}
+
+.status-filter-btn.active {
+    background-color: var(--primary-color);
+    color: var(--color-white);
+    border-color: var(--primary-color);
+    font-weight: var(--font-weight-semibold);
+}
+
+.order-table-wrapper {
+    background-color: var(--bg-color-white);
+    box-shadow: var(--shadow-sm);
+    border-radius: var(--border-radius-md);
+    overflow-x: auto;
+    border: 1px solid var(--border-color-extra-light);
+}
+
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px; /* 테이블 최소 너비 */
+    text-align: left;
+}
+
+.order-table th, .order-table td {
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color-extra-light);
+    font-size: var(--font-size-sm);
+    color: var(--text-color-primary);
+}
+
+.order-table th {
+    background-color: var(--bg-color-gray-medium);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-color-secondary);
+    text-transform: uppercase;
+}
+
+.order-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.status-change-col {
+    width: 150px;
+    text-align: right;
+}
+
+.status-badge {
+    padding: 4px 10px;
+    border-radius: var(--border-radius-lg);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-xs);
+    white-space: nowrap;
+}
+
+.status-badge.status-완료 { background-color: var(--bg-color-success-light); color: var(--text-color-success); }
+.status-badge.status-선입금 { background-color: #dbeafe; color: #1d4ed8; } /* 예시 색상 */
+.status-badge.status-예약 { background-color: var(--bg-color-accent-light); color: var(--text-color-primary); }
+.status-badge.status-취소 { background-color: var(--bg-color-error-light); color: var(--text-color-error); }
+
+.status-select {
+    width: 100%;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border: 1px solid var(--border-color-light);
+    border-radius: var(--border-radius-md);
+    background-color: var(--bg-color-white);
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    transition: border-color var(--transition-speed-fast);
+}
+
+.status-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.25);
+}
+
+.no-data-message {
+    text-align: center;
+    padding: var(--spacing-3xl);
+    color: var(--text-color-secondary);
+    font-style: italic;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 767px) {
+    .order-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .search-input {
+        width: 100%;
+        margin-bottom: var(--spacing-sm);
+    }
+    .status-filter-buttons {
+        width: 100%;
+        justify-content: center;
+    }
+    .status-filter-btn {
+        flex-grow: 1;
+    }
+    .order-table {
+        min-width: unset;
+    }
+}

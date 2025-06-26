@@ -1,0 +1,184 @@
+/* src/pages/admin/ProductListPageAdmin.css */
+
+.admin-page-container {
+  padding: var(--spacing-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.admin-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 2px solid var(--border-color-dark);
+}
+
+.admin-page-title {
+  font-size: var(--font-size-xxl);
+  font-weight: var(--font-weight-bold);
+}
+
+.admin-add-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.admin-add-button:hover {
+  background-color: var(--primary-color-dark);
+}
+
+.admin-product-table-container {
+  background: white;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--box-shadow-md);
+  overflow-x: auto; /* 화면이 좁을 때 가로 스크롤 */
+}
+
+.admin-product-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.admin-product-table th,
+.admin-product-table td {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--border-color-light);
+  vertical-align: middle;
+}
+
+.admin-product-table th {
+  background-color: var(--bg-color-light);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-color-medium);
+  font-size: var(--font-size-sm);
+}
+
+.admin-product-thumbnail {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: var(--border-radius-md);
+}
+
+.product-name-cell {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-color-dark);
+}
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: var(--border-radius-full);
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.status-badge.status-published {
+  background-color: #d1fae5; /* Green */
+  color: #065f46;
+}
+
+.status-badge.status-draft {
+  background-color: #fee2e2; /* Red / Gray */
+  color: #991b1b;
+}
+
+.admin-action-buttons {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.admin-edit-button,
+.admin-delete-button {
+  border: 1px solid var(--border-color-medium);
+  background: none;
+  padding: 6px 12px;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.admin-edit-button {
+  color: var(--primary-color-dark);
+  border-color: var(--primary-color);
+}
+.admin-edit-button:hover {
+  background-color: var(--primary-color-lighter);
+}
+
+.admin-delete-button {
+  color: var(--danger-color);
+  border-color: var(--danger-color);
+}
+.admin-delete-button:hover {
+  background-color: #fee2e2;
+}
+
+.no-products-cell {
+  text-align: center;
+  padding: var(--spacing-xl);
+  color: var(--text-color-medium);
+}
+
+/* src/pages/admin/ProductListPageAdmin.css 파일 맨 아래에 추가 */
+
+/* --- 토글 스위치 스타일 --- */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 28px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--primary-color, #2196F3);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--primary-color, #2196F3);
+}
+
+input:checked + .slider:before {
+  transform: translateX(22px);
+}

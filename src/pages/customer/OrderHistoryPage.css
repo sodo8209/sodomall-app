@@ -1,0 +1,148 @@
+/* src/pages/customer/OrderHistoryPage.css */
+
+.customer-page-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.loading-message, .error-message, .no-orders-message {
+    text-align: center;
+    padding: 20px;
+    color: #888;
+}
+
+.error-message {
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+.order-history-list {
+    margin-top: 20px;
+}
+
+.order-card {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    margin-bottom: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.order-header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.order-date {
+    font-size: 1.1em;
+    color: #333;
+    font-weight: 600;
+}
+
+.order-status-badge {
+    font-size: 0.9em;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 5px;
+    text-transform: capitalize; 
+}
+
+.status-pending { background-color: #e3f2fd; color: #1e88e5; } 
+.status-paid { background-color: #fffde7; color: #ffc107; }    
+.status-shipped { background-color: #e0f7fa; color: #00bcd4; }  
+.status-delivered { background-color: #e8f5e9; color: #4caf50; } 
+.status-cancelled { background-color: #ffebee; color: #f44336; } 
+.status-noshow { background-color: #fce4ec; color: #e91e63; } 
+
+
+.order-items-detail-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px dashed #ddd;
+    padding-bottom: 15px;
+}
+
+.order-item-detail-row {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between;
+    align-items: baseline; 
+    padding: 8px 0;
+    font-size: 0.9em;
+    column-gap: 5px; 
+}
+
+.product-name-qty {
+    font-weight: bold;
+    color: #333;
+    flex-basis: 45%; 
+}
+
+/* [수정] 카테고리 영역의 flex-basis 조정 */
+.product-category {
+    font-size: 0.85em;
+    color: #888;
+    flex-basis: 25%; /* 기존 20% -> 25%로 늘림 */
+    text-align: center;
+}
+
+.product-quantity-display {
+    font-size: 0.9em;
+    color: #555;
+    flex-basis: 10%; 
+    text-align: center;
+    font-weight: 500;
+}
+
+/* [수정] 가격 영역의 flex-basis 조정 */
+.product-price {
+    font-size: 0.95em;
+    color: #555;
+    flex-basis: 15%; /* 기존 20% -> 15%로 줄임 */
+    text-align: right;
+}
+
+@media (max-width: 480px) {
+    .order-item-detail-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3px;
+    }
+    .product-name-qty, .product-category, .product-quantity-display, .product-price {
+        flex-basis: 100%;
+        text-align: left;
+    }
+    .product-price {
+        text-align: right; 
+    }
+}
+
+
+.order-footer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+    padding-top: 10px;
+}
+
+.order-total-price {
+    font-weight: normal; 
+    font-size: 1.1em;    
+    color: #555;        
+}
+
+.order-pickup-info {
+    font-size: 1.0em; 
+    color: #333;   
+    font-weight: 600; 
+}
